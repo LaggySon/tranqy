@@ -7,6 +7,7 @@ function Teams() {
 
   const getTeams = (evt) => {
     fetch(`http://18.216.247.139:3000/teams`)
+    //res.json takes the data from fetch and converts it to json
       .then((res) => res.json())
       .then((result) => {
         console.log(
@@ -15,6 +16,7 @@ function Teams() {
           )
         );
         setTeam(
+          //filter results to only contain ones that include the search query in the name or tier
           result.filter(
             (team) =>
               team.name.toLowerCase().includes(query.toLowerCase()) ||
@@ -42,6 +44,7 @@ function Teams() {
     return 0;
   }
 
+  //run this code every time the site is loaded
   useEffect(() => {
     getTeams();
   }, [query]);
